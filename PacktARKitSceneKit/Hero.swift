@@ -89,4 +89,24 @@ class Hero: SCNNode {
         self.position = SCNVector3(spawnPosition.x, spawnPosition.y + 0.25, spawnPosition.z)
         currentScene.rootNode.addChildNode(self)
     }
+    
+    func jump() {
+        if (isGrounded == true) {
+            self.physicsBody?.applyForce(SCNVector3Make(0,0.2,0), asImpulse: true)
+            isGrounded = false
+            playJumpAnim()
+        }
+    }
+    
+    func playRunAnim() {
+        monsterNode.removeAllAnimations()
+        monsterNode.addAnimationPlayer(runPlayer, forKey: "run")
+        monsterNode.animationPlayer(forKey: "run")?.play()
+    }
+    
+    func playJumpAnim() {
+        monsterNode.removeAllAnimations()
+        monsterNode.addAnimationPlayer(jumpPlayer, forKey: "jump")
+        monsterNode.animationPlayer(forKey: "jump")?.play()
+    }
 }

@@ -20,6 +20,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     
     var bGameSetup = false
     var bGameOver = false
+    var hero: Hero!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,14 +30,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
-        
-        // Create a new scene
-//        let scene = SCNScene(named: "art.scnassets/ship.scn")!
-        
-        // Set the scene to the view
-//        sceneView.scene = scene
-        
         sceneView.debugOptions = [ARSCNDebugOptions.showWorldOrigin, ARSCNDebugOptions.showFeaturePoints]
+        
+        sceneView.scene.physicsWorld.gravity = SCNVector3Make(0, -500/100.0, 0)
+        sceneView.scene.physicsWorld.contactDelegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -147,7 +144,17 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         
         sceneView.scene.rootNode.addChildNode(groundNode)
         
-        Hero(sceneView.scene, spawnPos)
+        hero = Hero(sceneView.scene, spawnPos)
+        hero.castsShadow = true
+    }
+    
+    func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
+        if (contact.nodeA.name == "hero" && contact.nodeB.name == "ground") || (contact.nodeA.name == "ground" && contact.nodeB.name == "hero") {
+            if !hero.isGrounded {
+                hero.isGrounded = true
+                hero.playRunAnim()
+            }
+        }
     }
 
     /*
