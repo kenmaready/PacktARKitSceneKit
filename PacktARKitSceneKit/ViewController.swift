@@ -30,7 +30,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
-        sceneView.debugOptions = [ARSCNDebugOptions.showWorldOrigin, ARSCNDebugOptions.showFeaturePoints]
+        sceneView.debugOptions = [ARSCNDebugOptions.showWorldOrigin, ARSCNDebugOptions.showFeaturePoints, SCNDebugOptions.showPhysicsShapes]
         
         sceneView.scene.physicsWorld.gravity = SCNVector3Make(0, -500/100.0, 0)
         sceneView.scene.physicsWorld.contactDelegate = self
@@ -97,6 +97,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                     setupGame(spawnPos)
                     plane.isHidden = true
                     bGameSetup = true
+                }
+            } else {
+                if (!bGameOver) {
+                    hero.jump()
                 }
             }
         }

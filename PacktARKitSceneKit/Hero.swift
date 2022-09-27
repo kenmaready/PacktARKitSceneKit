@@ -92,7 +92,7 @@ class Hero: SCNNode {
     
     func jump() {
         if (isGrounded == true) {
-            self.physicsBody?.applyForce(SCNVector3Make(0,0.2,0), asImpulse: true)
+            self.physicsBody?.applyForce(SCNVector3Make(0,0.24,0), asImpulse: true)
             isGrounded = false
             playJumpAnim()
         }
