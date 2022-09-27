@@ -10,12 +10,6 @@ import SceneKit
 import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDelegate {
-
-    enum PhysicsCategory: Int {
-        case hero = 1
-        case ground = 2
-        case enemy = 4
-    }
     
     @IBOutlet var sceneView: ARSCNView!
     
@@ -152,6 +146,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         groundNode.castsShadow = true
         
         sceneView.scene.rootNode.addChildNode(groundNode)
+        
+        Hero(sceneView.scene, spawnPos)
     }
 
     /*

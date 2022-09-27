@@ -47,6 +47,46 @@ class Hero: SCNNode {
         let bound = SCNVector3(x: maxVec.x - minVec.x, y: maxVec.y - minVec.y, z: maxVec.z - minVec.z)
         monsterNode.pivot = SCNMatrix4MakeTranslation(bound.x * 1.1, 0, 0)
         
+        let animKeys = monsterNode.animationKeys.first
+        let animPlayer = monsterNode.animationPlayer(forKey: animKeys!)
+        let anims = CAAnimation(scnAnimation: (animPlayer?.animation)!)
         
+        let runAnimation = Hero.animation(from: anims, startFrame: 31, endFrame: 50)
+        runAnimation.repeatCount = .greatestFiniteMagnitude
+        runAnimation.fadeInDuration = 0.0
+        runAnimation.fadeOutDuration = 0.0
+        runPlayer = SCNAnimationPlayer(animation: SCNAnimation(caAnimation: runAnimation))
+        monsterNode.addAnimationPlayer(runPlayer, forKey: "run")
+        
+        let jumpAnimation = Hero.animation(from: anims, startFrame: 81, endFrame: 100)
+        jumpAnimation.repeatCount = .greatestFiniteMagnitude
+        jumpAnimation.fadeInDuration = 0.0
+        jumpAnimation.fadeOutDuration = 0.0
+        jumpPlayer = SCNAnimationPlayer(animation: SCNAnimation(caAnimation: jumpAnimation))
+        monsterNode.addAnimationPlayer(jumpPlayer, forKey: "jump")
+        
+        monsterNode.removeAllAnimations()
+
+        monsterNode.animationPlayer(forKey: "run")?.play()
+
+        let collisionBox = SCNBox(width: 2/100.0, height: 8/100.0, length: 2/100.0, chamferRadius: 0.0)
+        collisionBox.firstMaterial?.diffuse.contents = UIColor.orange
+        
+        self.physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(geometry: collisionBox, options: nil))
+        self.physicsBody?.categoryBitMask = PhysicsCategory.hero.rawValue
+        self.physicsBody?.collisionBitMask = PhysicsCategory.ground.rawValue
+        self.physicsBody?.contactTestBitMask = PhysicsCategory.enemy.rawValue | PhysicsCategory.ground.rawValue
+        
+        self.physicsBody?.angularVelocityFactor = SCNVector3(0,0,0)
+        self.physicsBody?.restitution = 0.0
+        self.physicsBody?.mass = 20/100.0
+        
+        self.transform = SCNMatrix4MakeRotation(Float(Double.pi / 2), 0.0, 1.0, 0.0)
+        
+        self.scale = SCNVector3(0.1/100.0, 0.1/100.0, 0.1/100.0)
+        self.name = "hero"
+        
+        self.position = SCNVector3(spawnPosition.x, spawnPosition.y + 0.25, spawnPosition.z)
+        currentScene.rootNode.addChildNode(self)
     }
 }
