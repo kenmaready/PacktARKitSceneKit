@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9B9F32AC28E31B16002641C9 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9F32AB28E31B16002641C9 /* Hero.swift */; };
 		9B9F32AE28E338B9002641C9 /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9F32AD28E338B9002641C9 /* PhysicsCategory.swift */; };
+		9B9F32B028E340D4002641C9 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9F32AF28E340D4002641C9 /* Enemy.swift */; };
 		9BA3C0F128E2426900835E01 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA3C0F028E2426900835E01 /* AppDelegate.swift */; };
 		9BA3C0F328E2426900835E01 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BA3C0F228E2426900835E01 /* art.scnassets */; };
 		9BA3C0F528E2426900835E01 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA3C0F428E2426900835E01 /* ViewController.swift */; };
@@ -22,6 +23,7 @@
 /* Begin PBXFileReference section */
 		9B9F32AB28E31B16002641C9 /* Hero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
 		9B9F32AD28E338B9002641C9 /* PhysicsCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsCategory.swift; sourceTree = "<group>"; };
+		9B9F32AF28E340D4002641C9 /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		9BA3C0ED28E2426900835E01 /* PacktARKitSceneKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PacktARKitSceneKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BA3C0F028E2426900835E01 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9BA3C0F228E2426900835E01 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -63,16 +65,17 @@
 		9BA3C0EF28E2426900835E01 /* PacktARKitSceneKit */ = {
 			isa = PBXGroup;
 			children = (
-				9B9F32AD28E338B9002641C9 /* PhysicsCategory.swift */,
-				9B9F32AB28E31B16002641C9 /* Hero.swift */,
-				9BA3C10328E2453100835E01 /* Plane.swift */,
-				9BA3C0F028E2426900835E01 /* AppDelegate.swift */,
+				9BA3C10528E247A900835E01 /* plane.png */,
 				9BA3C0F228E2426900835E01 /* art.scnassets */,
+				9BA3C0F028E2426900835E01 /* AppDelegate.swift */,
+				9B9F32AF28E340D4002641C9 /* Enemy.swift */,
+				9B9F32AB28E31B16002641C9 /* Hero.swift */,
+				9B9F32AD28E338B9002641C9 /* PhysicsCategory.swift */,
+				9BA3C10328E2453100835E01 /* Plane.swift */,
 				9BA3C0F428E2426900835E01 /* ViewController.swift */,
-				9BA3C0F628E2426900835E01 /* Main.storyboard */,
 				9BA3C0F928E2426B00835E01 /* Assets.xcassets */,
 				9BA3C0FB28E2426B00835E01 /* LaunchScreen.storyboard */,
-				9BA3C10528E247A900835E01 /* plane.png */,
+				9BA3C0F628E2426900835E01 /* Main.storyboard */,
 			);
 			path = PacktARKitSceneKit;
 			sourceTree = "<group>";
@@ -152,6 +155,7 @@
 			files = (
 				9BA3C0F528E2426900835E01 /* ViewController.swift in Sources */,
 				9BA3C10428E2453100835E01 /* Plane.swift in Sources */,
+				9B9F32B028E340D4002641C9 /* Enemy.swift in Sources */,
 				9B9F32AE28E338B9002641C9 /* PhysicsCategory.swift in Sources */,
 				9BA3C0F128E2426900835E01 /* AppDelegate.swift in Sources */,
 				9B9F32AC28E31B16002641C9 /* Hero.swift in Sources */,

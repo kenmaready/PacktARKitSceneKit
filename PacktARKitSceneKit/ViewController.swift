@@ -21,6 +21,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     var bGameSetup = false
     var bGameOver = false
     var hero: Hero!
+    var enemy: Enemy!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -150,6 +151,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         
         hero = Hero(sceneView.scene, spawnPos)
         hero.castsShadow = true
+        
+        enemy = Enemy(sceneView.scene, spawnPos)
+        enemy.castsShadow = true
     }
     
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
@@ -157,6 +161,19 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
             if !hero.isGrounded {
                 hero.isGrounded = true
                 hero.playRunAnim()
+            }
+        }
+        
+        if (contact.nodeA.name == "hero" && contact.nodeB.name == "enemy") || (contact.nodeA.name == "enemy" && contact.nodeB.name == "hero") {
+            bGameOver = true
+            enemy.reset()
+        }
+    }
+    
+    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+        if bGameSetup {
+            if !bGameOver {
+                enemy.update()
             }
         }
     }
